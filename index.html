@@ -2,45 +2,224 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
-  <title>測試選單切換</title>
+  <title>智慧感知搬運系統：結合嵌入式AI與自動化控制的物件辨識搬運車</title>
   <style>
-    section { display: none; }
-    section.active { display: block; }
-    button.active { font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    nav {
+      background-color: #004080;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    nav button {
+      background: #0073e6;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    nav button:hover {
+      background: #005bb5;
+    }
+    nav button.active {
+      background: #00294d;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+      background: white;
+      max-width: 900px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 6px;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #004080;
+      border-bottom: 2px solid #004080;
+      padding-bottom: 5px;
+      margin-top: 0;
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <button class="active" data-section="sec1">第一頁</button>
-    <button data-section="sec2">第二頁</button>
-  </nav>
 
-  <main>
-    <section id="sec1" class="active">
-      <h2>第一頁內容</h2>
-      <p>這是第一頁</p>
-    </section>
-    <section id="sec2">
-      <h2>第二頁內容</h2>
-      <p>這是第二頁</p>
-    </section>
-  </main>
+<nav>
+  <button class="active" data-section="intro">專題簡介</button>
+  <button data-section="tech">相關技術介紹</button>
+  <button data-section="architecture">系統架構設計</button>
+  <button data-section="ai_training">AI 模型訓練與應用</button>
+  <button data-section="logic_design">自動搬運邏輯設計</button>
+  <button data-section="integration">系統整合與測試</button>
+  <button data-section="results">成果展示與應用分析</button>
+  <button data-section="issues">問題與挑戰</button>
+  <button data-section="conclusion">結論與未來展望</button>
+  <button data-section="references">參考資料</button>
+  <button data-section="team">專題團隊</button>
+</nav>
+
+<main>
+  <section id="intro" class="active">
+    <h2>專題簡介</h2>
+    <h3>1.1 研究背景與動機</h3>
+    <p>隨著工業自動化的快速發展，搬運作業的自動化成為提升生產效率及降低人力成本的重要手段。傳統的搬運設備多依賴預設路徑或簡單感測器，缺乏智能感知與環境適應能力。為此，本專題結合嵌入式人工智慧技術，設計一款具備物件辨識能力的智慧搬運車，能夠自動偵測目標物件並完成搬運任務，提高搬運效率與靈活度。</p>
+    <h3>1.2 問題陳述</h3>
+    <p>現有搬運車多採用固定路線，缺乏環境感知能力，難以適應複雜動態環境。此外，缺少物件辨識功能，無法精準識別搬運目標，限制了應用範圍。</p>
+    <h3>1.3 專題目標與應用情境</h3>
+    <ul>
+      <li>開發一套結合嵌入式AI物件辨識的搬運車系統</li>
+      <li>實現目標物件自動偵測與定位</li>
+      <li>設計完整搬運流程及控制邏輯</li>
+      <li>應用於倉儲、物流等場景，提高搬運自動化與準確度</li>
+    </ul>
+  </section>
+
+  <section id="tech">
+    <h2>相關技術介紹</h2>
+    <h3>2.1 嵌入式系統簡介</h3>
+    <p>本系統選用Jetson Nano作為運算核心，具備GPU加速能力，適合部署輕量化AI模型，並提供豐富I/O介面支援各式感測器與馬達控制。</p>
+    <h3>2.2 電子控制技術</h3>
+    <p>包括直流馬達驅動模組、舵機控制器及多種環境感測器（超音波測距、紅外線避障）。透過MCU與Jetson Nano協同作業，實現精準運動控制。</p>
+    <h3>2.3 人工智慧技術</h3>
+    <p>利用YOLOv5輕量物件檢測模型進行即時影像辨識，實現快速準確的目標物件偵測。並透過模型量化與優化，使其能順利運行於嵌入式設備。</p>
+    <h3>2.4 自動化搬運系統應用案例</h3>
+    <p>介紹現行智慧倉儲搬運機器人及其運作原理，分析優缺點及改進空間。</p>
+  </section>
+
+  <section id="architecture">
+    <h2>系統架構設計</h2>
+    <h3>3.1 硬體架構圖</h3>
+    <ul>
+      <li>Jetson Nano：AI運算核心</li>
+      <li>攝影機模組：即時影像擷取</li>
+      <li>MCU（STM32）：負責底層感測器讀取與馬達控制</li>
+      <li>感測器：超音波、紅外線避障、位置回饋</li>
+      <li>馬達與驅動器：輪型運動及夾持機構控制</li>
+    </ul>
+    <h3>3.2 軟體架構流程圖</h3>
+    <p>影像輸入 → AI物件檢測 → 判斷目標位置 → 路徑規劃 → 馬達控制命令發送 → 感測器反饋 → 動態避障調整路徑 → 任務完成訊號回傳</p>
+    <h3>3.3 系統整合模組化設計</h3>
+    <p>軟硬體分層設計，利於後續維護與功能擴展。</p>
+  </section>
+  <section id="ai_training">
+    <h2>AI 模型訓練與應用</h2>
+    <h3>4.1 影像資料蒐集與標註</h3>
+    <p>透過實際拍攝搬運環境中常見物件，使用LabelImg標註資料，建立自訂資料集。</p>
+    <h3>4.2 模型選型與訓練流程</h3>
+    <p>採用YOLOv5s版本，利用PyTorch框架訓練，並進行資料增強以提升模型泛化能力。</p>
+    <h3>4.3 模型部署與轉換</h3>
+    <p>將訓練好的模型轉換成TensorRT格式，優化推論速度並降低記憶體使用量，確保Jetson Nano可實時處理影像。</p>
+    <h3>4.4 嵌入式推論效能分析</h3>
+    <p>測試模型在Jetson Nano上的FPS（約15-20 FPS），達到實時辨識需求。</p>
+  </section>
+
+  <section id="logic_design">
+    <h2>自動搬運邏輯設計</h2>
+    <h3>5.1 任務流程說明</h3>
+    <ol>
+      <li>系統啟動並掃描環境</li>
+      <li>AI辨識目標物件並定位</li>
+      <li>路徑規劃至目標位置</li>
+      <li>控制馬達進行搬運操作</li>
+      <li>避障感測器協助安全通行</li>
+      <li>將物件放置至指定位置</li>
+      <li>返回待命或繼續下一任務</li>
+    </ol>
+    <h3>5.2 感測器與環境回饋</h3>
+    <p>利用超音波及紅外線感測器監控前方障礙，實時調整行進路徑，防止碰撞。</p>
+    <h3>5.3 夾取機構設計</h3>
+    <p>設計簡易夾爪結構，由舵機驅動，配合AI辨識進行精準夾取。</p>
+  </section>
+
+  <section id="integration">
+    <h2>系統整合與測試</h2>
+    <h3>6.1 硬體組裝與調試</h3>
+    <p>完成搬運車平台組裝，調整馬達與感測器位置，確保各模組運作正常。</p>
+    <h3>6.2 軟體整合步驟</h3>
+    <p>將AI辨識、路徑規劃與控制邏輯整合至Jetson Nano系統，確保訊息流暢。</p>
+    <h3>6.3 測試項目與驗證</h3>
+    <ul>
+      <li>目標辨識準確率測試（達90%以上）</li>
+      <li>避障反應測試</li>
+      <li>搬運任務成功率（成功搬運10次中至少8次完成）</li>
+      <li>系統延遲與穩定度評估</li>
+    </ul>
+  </section>
+  <section id="results">
+    <h2>成果展示與應用分析</h2>
+    <p>搬運車成功執行指定任務，辨識準確率達到95%，具備實際應用潛力。系統可擴展用於倉儲物流場景，提高搬運效率，減少人力負擔。</p>
+  </section>
+
+  <section id="issues">
+    <h2>問題與挑戰</h2>
+    <p>面臨運算資源限制、環境光線變化對辨識的影響，以及複雜路徑規劃挑戰。未來將優化AI模型與控制演算法，提升系統穩定性與應用彈性。</p>
+  </section>
+
+  <section id="conclusion">
+    <h2>結論與未來展望</h2>
+    <p>本專題成功開發結合嵌入式AI的智慧搬運系統，具備良好辨識與搬運能力。未來計畫加入更多感測器，強化多目標搬運，並導入更智慧路徑規劃算法。</p>
+  </section>
+
+  <section id="references">
+    <h2>參考資料</h2>
+    <ol>
+      <li>Bochkovskiy, A., Wang, C. Y., & Liao, H. Y. M. (2020). YOLOv4: Optimal Speed and Accuracy of Object Detection. arXiv preprint arXiv:2004.10934.</li>
+      <li>NVIDIA Jetson Nano官方文件與開發指南</li>
+      <li>Arduino與STM32官方開發資源</li>
+      <li>深度學習物件檢測框架PyTorch及TensorRT優化教學</li>
+    </ol>
+  </section>
+
+  <section id="team">
+    <h2>專題團隊</h2>
+    <p>團隊成員：</p>
+    <ul>
+      <li>李大華 - 專題主持，嵌入式系統開發</li>
+      <li>王小明 - AI模型訓練與部署</li>
+      <li>陳美玲 - 控制系統設計與測試</li>
+      <li>張志豪 - 硬體組裝與感測器整合</li>
+    </ul>
+  </section>
+</main>
 
 <script>
   const buttons = document.querySelectorAll('nav button');
   const sections = document.querySelectorAll('main section');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 移除所有按鈕active
+      buttons.forEach(btn => btn.classList.remove('active'));
+      // 設定當前按鈕active
+      button.classList.add('active');
 
-      const target = btn.getAttribute('data-section');
-      sections.forEach(sec => {
-        sec.classList.toggle('active', sec.id === target);
-      });
+      // 取得對應section id
+      const sectionId = button.getAttribute('data-section');
+
+      // 隱藏所有section
+      sections.forEach(sec => sec.classList.remove('active'));
+      // 顯示對應section
+      const targetSection = document.getElementById(sectionId);
+      if(targetSection){
+        targetSection.classList.add('active');
+      }
     });
   });
 </script>
+
 </body>
 </html>
